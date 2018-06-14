@@ -2,7 +2,7 @@ package jp.co.axiz.web.entity;
 
 public class Update {
 
-	private Integer id;
+	private String id;
 	private String name;
 	private String telephone;
 	private String password;
@@ -12,11 +12,11 @@ public class Update {
 	return "User [id=" + id+ ", name=" + name+ ", tel=" + telephone + ", password=" + password + "]";
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

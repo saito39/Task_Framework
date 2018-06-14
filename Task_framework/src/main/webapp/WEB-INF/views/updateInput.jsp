@@ -10,7 +10,7 @@
 <p>１箇所以上の項目を変更してください<br>
 ※IDは変更できません</p>
 
-<form:form action="post" method="post">
+<form action="updateConfirm" method="post">
   <fieldset>
     <div>
       <label>ID</label><input type="text" name="id" value="111" readonly>
@@ -27,9 +27,9 @@
   </fieldset>
   <div>
     <input type="submit" name="button" value="確認">
-    <input type="submit" name="button" value="戻る" onclick="location.href='update.html'; return false;">
+    <input type="submit" name="button" value="戻る" onclick="location.href='update.jsp'; return false;">
   </div>
-</form:form>
+</form>
 <div>
   <a href="menu.html">メニューに戻る</a>
 </div>

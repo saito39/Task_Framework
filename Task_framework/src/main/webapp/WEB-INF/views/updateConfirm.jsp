@@ -26,7 +26,7 @@
 <body>
 <p>これでよろしいですか？</p>
 
-<form action="updateResult" method="post">
+<form action="update" method="post">
   <fieldset>
     <div>
       <label>ID</label><input type="text" name="id" value="111" readonly>
