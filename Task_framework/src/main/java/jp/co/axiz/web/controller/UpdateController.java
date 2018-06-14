@@ -1,33 +1,33 @@
 package jp.co.axiz.web.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.axiz.web.entity.Update;
+import jp.co.axiz.web.form.UpdateForm;
 import jp.co.axiz.web.service.UpdateService;
 
 @Controller
 public class UpdateController {
 
-	private UpdateService updService;
+	@RequestMapping(value="/updateConfirm", method=RequestMethod.POST)
+	public String update(Model model,@ModelAttribute("updateForm") UpdateForm updateForm) {
+		model.addAttribute("updId",updateForm.getUpdId());
 
-	@RequestMapping("/updateInput")
-	public String upd(Model model) {
-		//List<Update> list = updService.findAll();
-		//model.addAttribute("upd", "aaa");
+		//return "updateConfirm";
+	//}
 
+	List<Update> updList = UpdateService.findAll();
+	for(Update update : updList) {
+		if(update.getId().equals(updateForm.getUpdId()));
+		return "updateConfirm";
+	} else {
 		return "updateInput";
 	}
 }
-
-
-/*	@RequestMapping(value="/get", method=RequestMethod.GET)
-	public String update(@ModelAttribute("update") Form,form,Model model) {
-		model.addAttribute(form.getId());
-
-		return "updateInput";
-	}
-*/
-
-
-
