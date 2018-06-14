@@ -26,23 +26,23 @@
 <body>
 <p>これでよろしいですか？</p>
 
-<form action="update" method="post">
+<form:form modelAttribute="updateForm" action="updateInput" method="POST">
   <fieldset>
     <div>
-      <label>ID</label><input type="text" name="id" value="111" readonly>
+      <label>ID</label><form:input path="updId" name="id" value="" readonly />
     </div>
   </fieldset>
 
   <fieldset class="col">
     <legend>変更前</legend>
     <div>
-      <label>名前</label><input type="text" value="alice" disabled>
+      <label>名前</label><form:input path="text" value="" disabled />
     </div>
     <div>
-      <label>TEL</label><input type="text" value="19980406" disabled>
+      <label>TEL</label><form:input path="text" value="" disabled />
     </div>
     <div>
-      <label>PASS</label><input type="password" value="alicesos" disabled>
+      <label>PASS</label><form:input path="password" value="" disabled />
     </div>
   </fieldset>
 
@@ -51,10 +51,10 @@
   <fieldset class="col label-110">
     <legend>変更後</legend>
     <div>
-      <label>名前</label><input type="text" name="newName" value="alice" readonly>
+      <label>名前</label><input type="text" name="newName" value="" readonly>
     </div>
     <div>
-      <label>TEL</label><input type="text" name="newTel" value="19990128" readonly>
+      <label>TEL</label><input type="text" name="newTel" value="" readonly>
     </div>
     <div>
       <label>PASS(再入力)</label><input type="password" name="rePass">
@@ -62,12 +62,12 @@
   </fieldset>
 
   <div class="col-clear">
-    <input type="submit" name="button" value="更新">
+   <form:button>更新</form:button>
     <input type="submit" name="button" value="戻る" onclick="location.href='updateInput.html'; return false;">
   </div>
-</form>
+</form:form>
 <div>
-  <a href="menu.html">メニューに戻る</a>
+  <a href="menu.jsp">メニューに戻る</a>
 </div>
 </body>
 </html>

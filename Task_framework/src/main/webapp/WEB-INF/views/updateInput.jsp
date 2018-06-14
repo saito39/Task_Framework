@@ -10,28 +10,28 @@
 <p>１箇所以上の項目を変更してください<br>
 ※IDは変更できません</p>
 
-<form action="updateConfirm" method="post">
+<form:form modelAttribute="updateForm" action="updateConfirm" method="post">
   <fieldset>
     <div>
-      <label>ID</label><input type="text" name="id" value="111" readonly>
+      <label>ID</label><form:input path="updId" name="id" readonly />
     </div>
     <div>
-      <label>名前</label><input type="text" name="newName" value="alice">
+      <label>名前</label><form:input path="updName" name="newName" />
     </div>
     <div>
-      <label>TEL</label><input type="text" name="newTel" value="19980406">
+      <label>TEL</label><form:input path="updTel" name="newTel" />
     </div>
     <div>
-      <label>PASS</label><input type="password" name="newPass" value="alicesos">
+      <label>PASS</label><form:input path="password" name="newPass" />
     </div>
   </fieldset>
   <div>
-    <input type="submit" name="button" value="確認">
+     <form:button>確認</form:button>
     <input type="submit" name="button" value="戻る" onclick="location.href='update.jsp'; return false;">
   </div>
-</form>
+</form:form>
 <div>
-  <a href="menu.html">メニューに戻る</a>
+  <a href="menu.jsp">メニューに戻る</a>
 </div>
 </body>
 </html>
