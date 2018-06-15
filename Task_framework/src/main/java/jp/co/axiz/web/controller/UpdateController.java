@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.axiz.web.dao.UpdateDao;
+import jp.co.axiz.web.dao.UserInfoDao;
 import jp.co.axiz.web.entity.Update;
 import jp.co.axiz.web.form.UpdateForm;
 
@@ -17,7 +17,7 @@ import jp.co.axiz.web.form.UpdateForm;
 public class UpdateController {
 
 	@Autowired
-	private UpdateDao updDao;
+	private UserInfoDao updDao;
 	private Update afterUser;
 
 	@RequestMapping(value="/update",method=RequestMethod.GET)
