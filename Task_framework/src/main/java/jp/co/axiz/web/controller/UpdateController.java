@@ -124,18 +124,6 @@ public class UpdateController {
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String success(@ModelAttribute("updateForm") UpdateForm form,BindingResult bindingResult, Model model) {
 
-		/*if( pass不一致 ) {
-				model.addAttribute("errmsg","前画面で入力されたパスワードと一致しません");
-				return "updateConfirm";
-
-			} else {
-
-				// 元のupdateメソッドはstmtとか?とか使うやつ
-				updDao.update(afterUser);
-
-				model.addAttribute("updId", afterUser.getId());*/
-
-
 		UserInfo afterUser = session.getAfterUser();
 
 		if(!afterUser.getPassword().equals(form.getConfirmNewPassword())) {
