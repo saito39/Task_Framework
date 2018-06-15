@@ -3,6 +3,8 @@ package jp.co.axiz.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,19 +29,20 @@ public class DeleteController {
 	}
 
 	@RequestMapping("/deleteConfirm")
-	public String list(@ModelAttribute("deleteForm") DeleteForm form, Model model) {
+	public String list(@Validated @ModelAttribute("deleteForm") DeleteForm form, BindingResult bindingResult,
+			Model model) {
 		/*List<Delete> list = delService.findAll();
 		model.addAttribute("delLlist", list);*/
 
-		if (form.getUserId() == null) {
-			model.addAttribute("errmsg", "");
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errmsg", "必須項目を入力してください");
 			return "delete";
 		}
 
 		UserInfo user = uiServiceImpl.findById(form.getUserId());
 
 		if(user == null) {
-			model.addAttribute("errmsg", "");
+			model.addAttribute("errmsg", "入力されたデータは存在しません");
 			return "delete";
 		}
 
@@ -50,7 +53,8 @@ public class DeleteController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String deleteExecute(@ModelAttribute("deleteForm") DeleteForm form,Model model) {
+	public String deleteExecute(@Validated @ModelAttribute("deleteForm") DeleteForm form, BindingResult bindingResult,
+			Model model) {
 
 		int id = form.getUserId();
 

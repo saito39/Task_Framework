@@ -3,6 +3,7 @@ package jp.co.axiz.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,18 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.axiz.web.entity.Session;
 import jp.co.axiz.web.entity.UserInfo;
 import jp.co.axiz.web.form.UpdateForm;
+import jp.co.axiz.web.service.UserInfoService;
 import jp.co.axiz.web.service.Impl.UserInfoServiceImpl;
 
 @Controller
 public class UpdateController {
 
 	@Autowired
-	//private UserInfoDao updDao;
-	//private Update afterUser;
 	private Session session;
 
 	@Autowired
 	private UserInfoServiceImpl uiServiceImpl;
+
+	@Autowired
+	private UserInfoService uiService;
 
 	@RequestMapping(value="/update",method=RequestMethod.GET)
 	public String update(@ModelAttribute("updateForm") UpdateForm form,Model model) {
@@ -40,7 +43,7 @@ public class UpdateController {
 		}
 
 		//List<Update> updList = updDao.findAll();
-		UserInfo user = uiServiceImpl.findById(form.getUserId());
+		UserInfo user = uiService.findById(form.getUserId());
 
 		/*for(Update update : updList) {
 			 if(!(updId.equals(update.getId()))) {
@@ -119,7 +122,7 @@ public class UpdateController {
 	}
 
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String success(@ModelAttribute("updateForm") UpdateForm form,Model model) {
+	public String success(@ModelAttribute("updateForm") UpdateForm form,BindingResult bindingResult, Model model) {
 
 		/*if( pass不一致 ) {
 				model.addAttribute("errmsg","前画面で入力されたパスワードと一致しません");
@@ -155,7 +158,7 @@ public class UpdateController {
 
 		model.addAttribute("user", session.getLoginUser());
 
-		return "updateResut";
+		return "updateResult";
 	}
 }
 

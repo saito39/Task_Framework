@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,16 @@ public class SelectController {
 	}
 
 	@RequestMapping(value = "/list")
-	public String list(@Validated @ModelAttribute("selectForm") SelectForm form, Model model) {
+	public String list(@Validated @ModelAttribute("selectForm") SelectForm form, BindingResult bindingResult,
+			Model model) {
 
-		if (form.getUserId() == null) {
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("errmsg", "");
 			return "select";
+
+	/*	if (form.getUserId() == null) {
+			model.addAttribute("errmsg", "");
+			return "select";*/
 		}
 
 		UserInfo condition = new UserInfo();
@@ -40,7 +46,7 @@ public class SelectController {
 		List<UserInfo> resultList = uiServiceImpl.find(condition);
 
 		if(resultList.isEmpty()) {
-			model.addAttribute("errmsg", "入力されたデータは存在しません");
+			model.addAttribute("errmsg", "入力されたデータはありませんでした");
 			return "select";
 		}else {
 			model.addAttribute("userlist", resultList);
