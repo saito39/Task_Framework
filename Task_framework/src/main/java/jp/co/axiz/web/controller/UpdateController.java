@@ -34,13 +34,13 @@ public class UpdateController {
 		//model.addAttribute("updId",form.getUpdId());
 		//String updId = form.getUpdId();
 
-		if(userId == null || updId.isEmpty()) {
+		if(form.getUserId() == null /*|| form.getUserId().equals("")*/) {
 			model.addAttribute("errmsg","必須項目を入力してください");
 			return "update";
 		}
 
 		//List<Update> updList = updDao.findAll();
-		UserInfo user = UserInfoServiceImpl.findById(form.getUserId());
+		UserInfo user = uiServiceImpl.findById(form.getUserId());
 
 		/*for(Update update : updList) {
 			 if(!(updId.equals(update.getId()))) {
@@ -148,7 +148,7 @@ public class UpdateController {
 			return "updateConfirm";
 		}
 
-		userInfoService.update(afterUser);
+		uiServiceImpl.update(afterUser);
 
 		session.setAfterUser(null);
 		session.setPrevUser(null);
