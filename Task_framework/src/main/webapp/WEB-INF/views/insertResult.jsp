@@ -8,24 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>更新画面</title>
+<title>登録結果確認画面</title>
 <link href="/css/commons.css" rel="stylesheet">
 </head>
 <body>
-<p>更新を行うデータのIDを入力してください<br>
-<span class="required"></span>は必須です</p>
-
-<c:if test="${not empty errmsg}">
-  <p class="error">${fn:escapeXml(errmsg)}</p>
-</c:if>
-
-<form:form action="updateInput" method="post" modelAttribute="updateForm">
-  <fieldset>
-    <div>
-      <label class="required">ID</label><form:input path="userId" />
-    </div>
-  </fieldset>
-  <input type="submit" value="確認">
+<p>実行者：${fn:escapeXml(user.adminName)}</p>
+<p>正常に登録されました</p>
+<form:form action="select" modelAttribute="insertForm">
+  <form:hidden path="userId" />
+  <input type="submit" value="検索">
 </form:form>
 <div>
   <a href="menu">メニューに戻る</a>

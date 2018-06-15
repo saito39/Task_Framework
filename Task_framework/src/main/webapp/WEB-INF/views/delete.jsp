@@ -8,18 +8,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>更新画面</title>
+<title>削除画面</title>
 <link href="/css/commons.css" rel="stylesheet">
 </head>
 <body>
-<p>更新を行うデータのIDを入力してください<br>
+<p>削除を行うデータのIDを入力してください<br>
 <span class="required"></span>は必須です</p>
 
 <c:if test="${not empty errmsg}">
   <p class="error">${fn:escapeXml(errmsg)}</p>
 </c:if>
 
-<form:form action="updateInput" method="post" modelAttribute="updateForm">
+<form:form action="deleteConfirm" method="post" modelAttribute="deleteForm">
   <fieldset>
     <div>
       <label class="required">ID</label><form:input path="userId" />

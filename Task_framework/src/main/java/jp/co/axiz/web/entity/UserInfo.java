@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 public class UserInfo implements Serializable {
 
-	private String id;
-	private String name;
+	private Integer userId;
+	private String userName;
 	private String telephone;
 	private String password;
 
-	public String getId() {
-		return id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(Integer _userId) {
+		this.userId = _userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String _userName) {
+		this.userName = _userName;
 	}
 
 	public String getTelephone() {
@@ -41,12 +41,18 @@ public class UserInfo implements Serializable {
 		this.password = password;
 	}
 
+	public boolean isConditionsEmpty() {
+		return userId == null
+				&& (userName == null || userName.isEmpty())
+				&& (telephone == null || telephone.isEmpty());
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
 		return result;
@@ -61,15 +67,15 @@ public class UserInfo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		UserInfo other = (UserInfo) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!userId.equals(other.userId))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (userName == null) {
+			if (other.userName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!userName.equals(other.userName))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -83,5 +89,4 @@ public class UserInfo implements Serializable {
 			return false;
 		return true;
 	}
-
 }

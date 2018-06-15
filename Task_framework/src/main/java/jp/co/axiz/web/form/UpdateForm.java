@@ -1,39 +1,87 @@
 package jp.co.axiz.web.form;
 
+import javax.validation.constraints.NotNull;
+
+
 public class UpdateForm {
 
-	private String updId;
-	private String updName;
-	private String updTel;
-	private String updPass;
+	@NotNull
+	private Integer userId;
+	private String newName;
+	private String newTel;
+	private String newPassword;
+	private String confirmNewPassword;
+	private String prevName;
+	private String prevTel;
+	private String prevPassword;
 
-	public String getUpdId() {
-		return updId;
-	}
-	public void setUpdId(String updId) {
-		this.updId = updId;
-	}
-	public String getUpdName() {
-		return updName;
-	}
-	public void setUpdName(String updName) {
-		this.updName = updName;
-	}
-	public String getUpdTel() {
-		return updTel;
-	}
-	public void setUpdTel(String updTel) {
-		this.updTel = updTel;
-	}
-	public String getUpdPass() {
-		return updPass;
-	}
-	public void setUpdPass(String updPass) {
-		this.updPass = updPass;
+	public Integer getUserId() {
+		return userId;
 	}
 
-
+	public void setUserId(Integer _userId) {
+		this.userId = _userId;
 	}
 
+	public String getNewName() {
+		return newName;
+	}
 
+	public void setNewName(String _newName) {
+		this.newName = _newName;
+	}
 
+	public String getNewTel() {
+		return newTel;
+	}
+
+	public void setNewTel(String _newTel) {
+		this.newTel = _newTel;
+	}
+
+	public String getConfirmNewPassword() {
+		return confirmNewPassword;
+	}
+
+	public void setConfirmNewPassword(String _confirmNewPassword) {
+		this.confirmNewPassword = _confirmNewPassword;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String _newPassword) {
+		this.newPassword = _newPassword;
+	}
+
+	public String getPrevName() {
+		return prevName;
+	}
+
+	public void setPrevName(String _prevName) {
+		this.prevName = _prevName;
+	}
+
+	public String getPrevTel() {
+		return prevTel;
+	}
+
+	public void setPrevTel(String _prevTel) {
+		this.prevTel = _prevTel;
+	}
+
+	public String getPrevPassword() {
+		return prevPassword;
+	}
+
+	public void setPrevPassword(String _prevPassword) {
+		this.prevPassword = _prevPassword;
+	}
+
+	public boolean hasError() {
+		return (newName == null || newName.isEmpty())
+				|| (newTel == null || newTel.isEmpty())
+				|| (newPassword == null || newPassword.isEmpty());
+	}
+}

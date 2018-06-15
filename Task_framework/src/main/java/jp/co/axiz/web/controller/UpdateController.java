@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.axiz.web.dao.UpdateDao;
 import jp.co.axiz.web.entity.Update;
-import jp.co.axiz.web.entity.UserInfo;
 import jp.co.axiz.web.form.UpdateForm;
 
 @Controller
@@ -19,18 +18,18 @@ public class UpdateController {
 
 	@Autowired
 	private UpdateDao updDao;
-	private UserInfo afterUser;
+	private Update afterUser;
 
 	@RequestMapping(value="/update",method=RequestMethod.GET)
-	public String update(Model model) {
+	public String update(@ModelAttribute("updateForm") UpdateForm form,Model model) {
 		return "update";
 	}
 
 	@RequestMapping(value="/updateInput", method=RequestMethod.POST)
-	public String updateInput(Model model,@ModelAttribute("updateForm") UpdateForm updateForm) {
-		model.addAttribute("updId",updateForm.getUpdId());
+	public String updateInput(@ModelAttribute("updateForm") UpdateForm form,Model model) {
+		model.addAttribute("updId",form.getUpdId());
 
-		String updId = updateForm.getUpdId();
+		String updId = form.getUpdId();
 
 		if(updId == null || updId.isEmpty()) {
 			model.addAttribute("errmsg","必須項目を入力してください");
@@ -50,39 +49,38 @@ public class UpdateController {
 			afterUser.setTelephone(update.getTelephone());
 			afterUser.setPassword(update.getPassword());
 
-			//model.addAttribute("beforeUser",userInfo.);
 			model.addAttribute("afterUser",afterUser);
 		}
 		return "updateInput";
 	}
 
 	@RequestMapping(value="/updateConfirm",method=RequestMethod.POST)
-	public String updateConfirm(Model model,@ModelAttribute("updateForm") UpdateForm updateForm) {
-
+	public String updateConfirm(@ModelAttribute("updateForm") UpdateForm form,Model model) {
+/*
 		if( 1項目も変更されてなかったら ) {
 			model.addAttribute("errmsg","1項目以上変更してください");
 			return "updateInput";
 
-		} else {
+		} else {*/
 			return "updateConfirm";
 		}
-	}
+	//}
 
 		@RequestMapping(value="/update",method=RequestMethod.POST)
-		public String success(Model model,@ModelAttribute("updateForm") UpdateForm updateForm) {
+		public String success(@ModelAttribute("updateForm") UpdateForm form,Model model) {
 
-			if( pass不一致 ) {
+			/*if( pass不一致 ) {
 				model.addAttribute("errmsg","前画面で入力されたパスワードと一致しません");
 				return "updateConfirm";
 
 			} else {
 
-				// updateメソッドはstmtとか?とか使うやつ
+				// 元のupdateメソッドはstmtとか?とか使うやつ
 				updDao.update(afterUser);
 
-				model.addAttribute("updId", afterUser.getId());
+				model.addAttribute("updId", afterUser.getId());*/
 
 				return "updateResut";
 			}
 		}
-		}
+		//}

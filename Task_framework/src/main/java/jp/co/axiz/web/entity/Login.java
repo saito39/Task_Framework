@@ -1,31 +1,27 @@
 package jp.co.axiz.web.entity;
 
-public class Login {
+import java.io.Serializable;
 
+public class Login implements Serializable {
 
-	private String id;
-	private String name;
+	private String adminId;
+	private String adminName;
 	private String password;
 
-	@Override
-	public String toString() {
-	return "User [id=" + id + ", name=" + name + ", password=" + password + "]";
+	public String getAdminId() {
+		return adminId;
 	}
 
-	public String getId() {
-		return id;
+	public void setAdminId(String _adminId) {
+		this.adminId = _adminId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getAdminName() {
+		return adminName;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setAdminName(String _adminName) {
+		this.adminName = _adminName;
 	}
 
 	public String getPassword() {
